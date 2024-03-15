@@ -29,6 +29,18 @@ export async function addContact(data) {
   return newContact;
 }
 
+export async function refreshContact(id, data) {
+  const allContacts = await listContacts();
+  const index = allContacts.findIndex((item) => item.id === id);
+  if (index === -1) {
+    return null;
+  }
+  allContacts[index] = { ...allContacts[index], ...data };
+  await updateContacts(allContacts);
+
+  return allContacts[index];
+}
+
 export async function removeContact(contactId) {
   const allContacts = await listContacts();
   const index = allContacts.findIndex((item) => item.id === contactId);
