@@ -4,6 +4,7 @@ import {
   addContact,
   refreshContact,
   removeContact,
+  refreshStatusContact,
 } from "../services/contactsServices.js";
 
 import HttpError from "../helpers/HttpError.js";
@@ -44,6 +45,15 @@ export const updateContact = ctrlWrapper(async (req, res) => {
 export const deleteContact = ctrlWrapper(async (req, res) => {
   const { id } = req.params;
   const result = await removeContact(id);
+  if (!result) {
+    throw HttpError(404, "Not found");
+  }
+  res.json(result);
+});
+
+export const updateStatusContact = ctrlWrapper(async (req, res) => {
+  const { id } = req.params;
+  const result = await refreshStatusContact(id, req.body);
   if (!result) {
     throw HttpError(404, "Not found");
   }

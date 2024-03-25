@@ -5,11 +5,13 @@ import mongoose from "mongoose";
 import contactsRouter from "./routes/contactsRouter.js";
 import "dotenv/config";
 
+const { DB_HOST, PORT } = process.env;
+
 mongoose
-  .connect(process.env.DB_HOST)
+  .connect(DB_HOST)
   .then(() => {
-    app.listen(3000, () => {
-      console.log("Server is running. Use our API on port: 3000");
+    app.listen(PORT, () => {
+      console.log("Database connection successful");
     });
   })
   .catch((error) => {
