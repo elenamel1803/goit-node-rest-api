@@ -17,8 +17,11 @@ import {
 
 import validateBody from "../helpers/validateBody.js";
 import isValidId from "../helpers/isValidId.js";
+import authenticate from "../helpers/authenticate.js";
 
 const contactsRouter = express.Router();
+
+contactsRouter.use(authenticate);
 
 contactsRouter.get("/", getAllContacts);
 
