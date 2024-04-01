@@ -11,7 +11,7 @@ import {
   updateUserSubscriptionSchema,
   usersSchema,
 } from "../schemas/usersSchemas.js";
-import authenticate from "../helpers/authenticate.js";
+import authenticate from "../middlewares/authenticate.js";
 
 const usersRouter = express.Router();
 

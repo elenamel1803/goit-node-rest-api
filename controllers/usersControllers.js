@@ -10,7 +10,6 @@ const { JWT_SECRET } = process.env;
 
 export const register = ctrlWrapper(async (req, res) => {
   const { email, password } = req.body;
-
   const user = await findUser({ email });
   if (user) {
     throw HttpError(409, "Email in use");
