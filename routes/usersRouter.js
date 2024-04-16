@@ -7,9 +7,12 @@ import {
   logout,
   updateUserSubscription,
   updateAvatar,
+  verify,
+  resendVerify,
 } from "../controllers/usersControllers.js";
 import {
   updateUserSubscriptionSchema,
+  userEmailSchema,
   usersSchema,
 } from "../schemas/usersSchemas.js";
 import authenticate from "../middlewares/authenticate.js";
@@ -18,6 +21,10 @@ import { upload } from "../middlewares/upload.js";
 const usersRouter = express.Router();
 
 usersRouter.post("/register", validateBody(usersSchema), register);
+
+usersRouter.get("/verify/:verificationToken", verify);
+
+usersRouter.post("/verify", validateBody(userEmailSchema), resendVerify);
 
 usersRouter.post("/login", validateBody(usersSchema), login);
 
